@@ -1,2 +1,3 @@
-# getting_cleaning
-repo for getting and cleaning data course
+# readme for student project
+explanation of steps involved in creating analysis script
+

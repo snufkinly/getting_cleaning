@@ -81,3 +81,6 @@ merged_data <- merged_data[, 2:69]
 #make into data table
 merged_dt <- as.data.table(merged_data)
 small_data <- merged_dt[, lapply(.SD, mean), by = c("subject", "activity")]
+
+#write table as a text file (tab-delimited text)
+write.table(small_data, file="summary_table.txt", row.names=FALSE, sep="\t" )

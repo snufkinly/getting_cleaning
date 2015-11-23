@@ -21,5 +21,7 @@ remove the sorting column
 transform into a data table for summarizing
 summarise via subject and activity to get the mean for each column variable
 
+write summary table as a tab-delimited text file using write.table
+
  
 

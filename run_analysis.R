@@ -1,3 +1,6 @@
+library(plyr)
+library(data.table)
+
 # Pull all the files into R
 
 
@@ -50,12 +53,19 @@ std_colnames <- c("subject", "activity", std_colnames)
 
 std_dev <- merged1[, std_colnames]
 meanmerged <- merged1[, mean_colnames]
-
+sort_stddev <- arrange(std_dev, subject, activity)
+sort_meanmerged <- arrange(meanmerged, subject, activity)
+sortvalue <- c(1:10299)
+sortvalue <- as.numeric(sortvalue)
+sort_stddev <- cbind(sortvalue, sort_stddev)
+sort_meanmerged <- cbind(sortvalue, sort_meanmerged)
+#remove extra subject and activity columns
+sort_stddev <- subset(sort_stddev, select = -c(subject, activity))
 
 # now have two datasets with correct column names just containing mean and std so need to 
 # merge them back into one tidy data set
 
-merged_data <- merge(meanmerged, std_dev, all=TRUE)
+merged_data <- join(sort_meanmerged, sort_stddev, by="sortvalue")
 
 #rename all the activities in a crude way
 merged_data$activity[merged_data$activity == 1] <- "WALKING"
@@ -65,7 +75,9 @@ merged_data$activity[merged_data$activity == 4] <- "SITTING"
 merged_data$activity[merged_data$activity == 5] <- "STANDING"
 merged_data$activity[merged_data$activity == 6] <- "LAYING"
 
-#make subsets
+#remove sorting column
+merged_data <- merged_data[, 2:69]
+
+#make into data table
 merged_dt <- as.data.table(merged_data)
-key <- setkey(merged_data, subject, activity)
-mean_subset <- merged_dt[, lapply(.SD, mean), keyby=key]
+small_data <- merged_dt[, lapply(.SD, mean), by = c("subject", "activity")]

@@ -1,11 +1,9 @@
-codebook for getting and cleaning data 	snufkinly 11/22/15
+codebook for getting and cleaning data personal project 	snufkinly 11/22/15
 
 	
 
 	
-html_document
-keep_md
-true
+
 Project Description
 
 processing of a mesy dataset into a tidy dataset and a summarized tidy dataset for the getting and cleaning data course
@@ -17,9 +15,9 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 Notes on the original (raw) data
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
-For each record it is provided:
+For each record we are provided with:
 ======================================
-data is from smartphone accelerometer and gyroscope
+data from smartphone accelerometer and gyroscope
 - Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
 - A 561-feature vector with time and frequency domain variables. 
@@ -30,12 +28,15 @@ data is from smartphone accelerometer and gyroscope
 Creating the tidy datafile
 Guide to create the tidy data file
 data was grouped, combined, renamed, sorted and processed via run_analysis.R script
-detail available in readme file
-
-
-
-Short, high-level description of what the cleaning script does. link to the readme document that describes the code in greater detail
+detail available in readme file listed below
 https://github.com/snufkinly/getting_cleaning/blob/master/README.md
+
+briefly: collapsed seperate parts of test and training data sets to provide variable names, subject and activity variables to the core un-named data.
+data was sorted and merged
+data was stripped of variables unneccesary for this assignmend (leaving mean and standard deviation values)
+this data was then prepared for summarization, sorted via subject and activity and the mean was calculated for each variable under this rubric
+finally the data was written as tab-delimited text file and saved to this github repository
+
 
 General description of the file including:
 
@@ -71,8 +72,5 @@ acceleration signals from smartphone accelerometer X axis in standard gravity un
 body acceleration signals *Body* obtained by subtracting gravity from the total acceleration
 angular velocity measured by the gyroscope for each window sample ((fixed-width sliding windows of 2.56 sec and 50% overlap) 128 readings per window),units are radians/sec
 
-    Class of the variable
-    Unique values/levels of the variable
-    Unit of measurement (if no unit of measurement list this as well)
-    In case names follow some schema, describe how entries were constructed (for example time-body-gyroscope-z has 4 levels of descriptors. Describe these 4 levels).
+  
 
